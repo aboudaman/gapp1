@@ -1,0 +1,10 @@
+.all-users {
+    /* border: 10px solid gray; */
+}
+
+.users-list {
+    /* border: 10px solid red; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}

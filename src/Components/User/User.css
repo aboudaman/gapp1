@@ -1,0 +1,10 @@
+.user-detail {
+    display: flex;
+    /* border: 1px solid blue; */
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    width: 250px;
+    height:250px;
+
+}
