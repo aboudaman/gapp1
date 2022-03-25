@@ -1,7 +1,7 @@
 import "./User.css";
 
 function User(props) {
-  console.log(props.userDetail);
+  // console.log(props.userDetail);
   const userDetail = props.userDetail;
   const {title, picture, firstName, lastName} = userDetail
   const fullName = `${title.toUpperCase()} ${firstName} ${lastName}`
@@ -13,7 +13,6 @@ function User(props) {
         <div className="name-box">
             <h5>{fullName}</h5>
         </div>
-
     </div>
   )
 }

@@ -1,0 +1,16 @@
+.login-page {
+    /* border: 10px solid red; */
+    padding-top: 50px;
+    /* text-align: center; */
+}
+.login-page-heading h4 {
+    font-size: 40px;
+    text-align: center;
+    padding-bottom: 25px;
+}
+.login-form {
+    /* border: 10px solid blue; */
+    width: 50%;
+    margin: auto;
+    /* text-align: center; */
+}
