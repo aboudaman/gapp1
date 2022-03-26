@@ -33,7 +33,7 @@ class App extends Component {
     // console.log("Password ==> ", password);
     this.validateUserCredentials(user)
       .then((userData) => {
-        console.log("userData ==> ", userData);
+        // console.log("userData ==> ", userData);
         this.setState({
           currentlyLoggedUser: userData,
           isLoggedIn: true,
@@ -56,8 +56,8 @@ class App extends Component {
   }
 
   render() {
-    console.log("isLoggedIn", this.state.isLoggedIn);
-    console.log("Current User", this.state.currentlyLoggedUser);
+    // console.log("isLoggedIn", this.state.isLoggedIn);
+    // console.log("Current User", this.state.currentlyLoggedUser);
     return (
       <>
         {this.state.currentlyLoggedUser ? (

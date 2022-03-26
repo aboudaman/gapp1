@@ -8,3 +8,11 @@
     flex-wrap: wrap;
     justify-content: space-around;
 }
+
+.user-title {
+    /* border: 10px solid red; */
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: space-around;
+    margin: 30px auto;
+}
