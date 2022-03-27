@@ -11,14 +11,15 @@ class UsersList extends Component {
       isLoading: true,
       userClicked: false,
       modalShow: false,
+      userID: null,
     };
   }
 
   handleClick(user, show) {
-    console.log("clicked User", user);
     this.setState({
       userClicked: true,
       modalShow: show,
+      userID: user.id,
     });
   }
 
@@ -41,6 +42,18 @@ class UsersList extends Component {
     });
   }
 
+  showUserDetail() {
+    //   console.log('clicked detail')
+    //   console.log(this.state.userID)
+    return (
+      <ModalView
+        show={this.state.modalShow}
+        onHide={this.handleModalShow.bind(this)}
+        userID={this.state.userID}
+      />
+    );
+  }
+
   render() {
     return (
       <>
@@ -48,19 +61,14 @@ class UsersList extends Component {
           <Loader />
         ) : (
           <div className="all-users">
-            <div className="users-list">{this.showUsers()}
-            </div>
+            <div className="users-list">{this.showUsers()}</div>
           </div>
         )}
         <>
           {/* <Button variant="primary" onClick={() => this.handleModalShow(true)}>
             Launch vertically centered modal
           </Button> */}
-
-          <ModalView
-            show={this.state.modalShow}
-            onHide={this.handleModalShow.bind(this)}
-          />
+          {this.state.modalShow && this.showUserDetail()}
         </>
       </>
     );

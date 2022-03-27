@@ -23,8 +23,8 @@ class Main extends Component {
           isLoading: false,
           allUsers: users.data,
           allUsersFiltered: users.data
-        });
-      });
+        })
+      })
   }
 
   handleSearch(e) {
