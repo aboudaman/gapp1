@@ -1,5 +1,6 @@
 .loader{
     display: flex;
-    text-align: center;
-    margin: 40vh auto;
+    justify-content: center;
+    /* text-align: center; */
+    margin: 10px auto;
 }

@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import "./ModalView.css";
 import { Component } from "react";
 import Loader from "../Common/Loader";
+import UserDetail from "../UserDetail/UserDetail";
 
 class ModalView extends Component {
   constructor(props) {
@@ -31,23 +32,11 @@ class ModalView extends Component {
     return (
       <>
         <Modal.Body>
-          <h4>
-            {this.state.user.firstName} {this.state.user.lastName}
-          </h4>
-          <div>
-            <img src={this.state.user.picture} alt="User" width="150px" />
-          </div>
+        <UserDetail 
+          userDetail={this.state.user}
+        />
 
-          <h6>Address</h6>
-          <p>City: {this.state.user.location.city}</p>
-          <p>Country: {this.state.user.location.country}</p>
-          <p>State: {this.state.user.location.state}</p>
-          <p>Street: {this.state.user.location.street}</p>
-          <p>Timezone: {this.state.user.location.timezone}</p>
         </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={() => this.props.onHide(false)}>Close</Button>
-        </Modal.Footer>
       </>
     );
   }
@@ -66,6 +55,9 @@ class ModalView extends Component {
           </Modal.Title>
         </Modal.Header>
         {this.state.user ? this.renderModal() : <Loader />}
+        <Modal.Footer>
+          <Button onClick={() => this.props.onHide(false)}>Close</Button>
+        </Modal.Footer>
       </Modal>
     );
   }

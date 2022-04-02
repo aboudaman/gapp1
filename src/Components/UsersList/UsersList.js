@@ -1,78 +1,73 @@
 import "./UsersList.css";
 import User from "../User/User";
-import { Component } from "react";
 import Loader from "../Common/Loader";
 import ModalView from "../Modal/ModalView";
+import { useState } from "react";
 
-class UsersList extends Component {
-  constructor(props) {
-    super();
-    this.state = {
-      isLoading: true,
-      userClicked: false,
-      modalShow: false,
-      userID: null,
-    };
-  }
+function UsersList(props) {
+  const {
+    modalShow,
+    showUsers,
+    showUserDetail,
+  } = useUserListHooks();
 
-  handleClick(user, show) {
-    this.setState({
-      userClicked: true,
-      modalShow: show,
-      userID: user.id,
-    });
-  }
+  return (
+    <>
+      {!props.allUsers ? (
+        <Loader />
+      ) : (
+        <div className="all-users">
+          <div className="users-list">{showUsers(props.allUsers)}</div>
+        </div>
+      )}
+      <>{modalShow && showUserDetail()}</>
+    </>
+  );
+}
 
-  showUsers() {
-    return this.props.allUsers.map((user) => {
+// Separate business logic with custom hook
+function useUserListHooks() {
+  const [userClicked, setUserClicked] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
+  const [userID, setUserID] = useState(null);
+
+  const handleClick = (user, show) => {
+    setUserClicked(true);
+    setModalShow(show);
+    setUserID(user.id);
+  };
+
+  const showUsers = (allUsers) => {
+    return allUsers.map((user) => {
       return (
         <User
-          userDetailReq={this.handleClick.bind(this)}
+          userDetailReq={handleClick}
           key={user.id}
           userDetail={user}
-          userClicked={this.state.userClicked}
+          userClicked={userClicked}
         />
       );
     });
-  }
+  };
 
-  handleModalShow(show) {
-    this.setState({
-      modalShow: show,
-    });
-  }
+  const handleModalShow = (show) => {
+    setModalShow(show);
+  };
 
-  showUserDetail() {
-    //   console.log('clicked detail')
-    //   console.log(this.state.userID)
+  const showUserDetail = () => {
     return (
-      <ModalView
-        show={this.state.modalShow}
-        onHide={this.handleModalShow.bind(this)}
-        userID={this.state.userID}
-      />
+      <ModalView show={modalShow} onHide={handleModalShow} userID={userID} />
     );
-  }
+  };
 
-  render() {
-    return (
-      <>
-        {!this.props.allUsers ? (
-          <Loader />
-        ) : (
-          <div className="all-users">
-            <div className="users-list">{this.showUsers()}</div>
-          </div>
-        )}
-        <>
-          {/* <Button variant="primary" onClick={() => this.handleModalShow(true)}>
-            Launch vertically centered modal
-          </Button> */}
-          {this.state.modalShow && this.showUserDetail()}
-        </>
-      </>
-    );
-  }
+  return {
+    showUsers,
+    handleModalShow,
+    showUserDetail,
+    handleClick,
+    userClicked,
+    modalShow,
+    userID,
+  };
 }
-
 export default UsersList;
