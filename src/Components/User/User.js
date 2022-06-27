@@ -16,7 +16,6 @@ function User(props) {
         </div>
 
     </div>
-
   )
 }
 export default User;

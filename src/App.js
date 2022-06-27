@@ -1,10 +1,13 @@
 import { Component } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Main from "./Components/Main/Main";
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import LoginForm from "./Components/LoginForm/LoginForm";
+import Home from "./Components/Home/Home"
+import About from "./Components/About/About"
 
 // function App() {
 //   return (
@@ -63,7 +66,13 @@ class App extends Component {
         {this.state.currentlyLoggedUser ? (
           <>
             <Header />
-            <Main />
+            
+            <Routes>
+              <Route path="/" element={<Home/>} />
+              <Route path ="/users" element= {<Main />} />
+              <Route path="/about" element={<About/>} />
+            </Routes>
+            
             <Footer />
           </>
         ) : (
